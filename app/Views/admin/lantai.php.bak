@@ -1,0 +1,103 @@
+<?= $this->extend('admin_template'); ?>
+<?= $this->section('content'); ?>
+<style>
+    .modal-backdrop.show {
+        display: none;
+    }
+</style>
+
+<div class="section-header">
+    <h1>Data Lantai</h1>
+</div>
+
+<div class="section-body">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card card-primary">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Lantai</th>
+                                    <th>Keterangan</th>
+                                    <th class="text-center"><i class="far fa-cog"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1; ?>
+                                <?php foreach ($lantai as $l) : ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $l->nama_lantai ?></td>
+                                        <td><?= $l->keterangan ?></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-primary" id="btnmodaledit-<?= $l->id ?>" data-toggle="modal" data-target="#modal_data_lantai_<?= str_replace(" ", "_", $l->id) ?>"><i class="far fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger" data-confirm="Woops...|Apakah anda yakin akan menghapus data <b><?= $l->nama_lantai ?></b>" data-confirm-yes="window.location = '/lantai/del/<?= $l->id ?>';"><i class="far fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4>Tambah data lantai</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/lantai/store" method="post">
+                        <?= csrf_field() ?>
+                        <div class="form-group">
+                            <label for="lantai">Lantai</label>
+                            <input type="text" name="lantai" id="lantai" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="ket">Keterangan</label>
+                            <textarea class="form-control" name="ket" id="ket"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2"></i> SIMPAN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Edit Data -->
+        <?php foreach ($lantai as $l) : ?>
+            <div class="modal fade" tabindex="10" id="modal_data_lantai_<?= str_replace(" ", "_", $l->id) ?>" aria-labelledby="modal_data_lantai_<?= str_replace(" ", "_", $l->id) ?>" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Edit data Lantai</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/lantai/edit" id="modaledit-<?= $l->id ?>" method="post">
+                                <?= csrf_field() ?>
+                                <input type="hidden" name="kode" value="<?= $l->id ?>">
+                                <div class="form-group">
+                                    <label for="lantai">Lantai</label>
+                                    <input type="text" value="<?= $l->nama_lantai ?>" name="lantai" id="lantai" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ket">Keterangan</label>
+                                    <textarea class="form-control" name="ket" id="ket"><?= $l->keterangan ?></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2"></i> SIMPAN</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach ?>
+
+    </div>
+</div>
+<?= $this->endSection(); ?>
