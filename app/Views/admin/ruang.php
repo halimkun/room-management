@@ -79,7 +79,8 @@
                                     <td><?= $l->nama_lantai ?></td>
                                     <td><?= $l->keterangan ?></td>
                                     <td class="text-center">
-                                        <button class="btn btn-sm btn-primary" id="btnmodaledit-<?= $l->id ?>" data-toggle="modal" data-target="#modal_edit_data_lantai_<?= str_replace(" ", "_", $l->nama_lantai) . $l->id ?>"><i class="far fa-edit"></i></button>
+                                        <!-- <button class="btn btn-sm btn-primary" id="btnmodaledit-<?= $l->id ?>" data-toggle="modal" data-target="#modalEditLaintai_<?= $l->id . str_replace(" ", "_", $l->nama_lantai) ?>"><i class="far fa-edit"></i></button> -->
+                                        <button class="btn btn-sm btn-primary" id="btnModalEditLantai" data-toggle="modal" data-kode="<?= $l->id ?>" data-target="#modalEditLantai"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-sm btn-danger" data-confirm="Woops...|Apakah anda yakin akan menghapus data <b><?= $l->nama_lantai ?></b>" data-confirm-yes="window.location = '/lantai/del/<?= $l->id ?>';"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
@@ -196,47 +197,44 @@
         </div>
     <?php endforeach ?>
 
-    <!-- Modal edit data lantai -->
-    <?php foreach ($lantai as $l) : ?>
-        <div class="modal fade" tabindex="1" id="modal_edit_data_lantai_<?= str_replace(" ", "_", $l->nama_lantai) . $l->id ?>" aria-labelledby="modal_edit_data_lantai_<?= str_replace(" ", "_", $l->nama_lantai) ?>" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Edit data Lantai</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/lantai/edit" id="editLantai" method="post">
-                            <?= csrf_field() ?>
-                            <input type="hidden" name="kode" value="<?= $l->id ?>">
-                            <div class="form-group">
-                                <label for="lantai">Lantai</label>
-                                <input type="text" name="lantai" id="lantai" required value="<?= $l->nama_lantai ?>" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="ket">Keterangan</label>
-                                <textarea class="form-control" name="ket" id="ket"><?= $l->keterangan ?></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2"></i> SIMPAN</button>
-                        </form>
-                    </div>
+    <div class="modal fade" tabindex="1" id="modalEditLantai" aria-labelledby="modalEditLantai" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Edit data Lantai</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/lantai/edit" id="formModalEditLantai" method="post">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="kode" value="">
+                        <div class="form-group">
+                            <label for="lantai">Lantai</label>
+                            <input type="text" name="lantai" id="lantai" required value="" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="ket">Keterangan</label>
+                            <textarea class="form-control" name="ket" id="ket"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2"></i> SIMPAN</button>
+                    </form>
                 </div>
             </div>
         </div>
-    <?php endforeach ?>
-
+    </div>
 </div>
 
 <script>
     $(document).ready(function() {
+
         jQuery.validator.setDefaults({
             errorClass: "is-invalid error",
             validClass: "is-valid",
         });
 
-        $.validator.addMethod("alphanumspacedash", function(value, element) {
+        $.validator.addMethod("myreg", function(value, element) {
             return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
         }, "Username must contain only letters, numbers, or dashes.");
 
@@ -245,10 +243,10 @@
             rules: {
                 lantai: {
                     required: true,
-                    alphanumspacedash: true
+                    myreg: true
                 },
                 ket: {
-                    alphanumspacedash: true
+                    myreg: true
                 }
             }
         });
@@ -258,48 +256,61 @@
             rules: {
                 ruang: {
                     required: true,
-                    alphanumspacedash: true
+                    myreg: true
                 },
                 lantai: {
                     required: true,
                 },
                 ket: {
-                    alphanumspacedash: true,
+                    myreg: true,
                 }
             }
         });
 
-        // validasi form edit lantai
+        // validasi form edit ruang 
         $("form#editRuang").each(function() {
             $(this).validate({
                 rules: {
+                    ruang: {
+                        required: true,
+                        myreg: true
+                    },
                     lantai: {
                         required: true,
-                        alphanumspacedash: true
                     },
                     ket: {
-                        alphanumspacedash: true,
+                        myreg: true,
                     }
                 }
             });
         });
 
-        // validasi form edit ruang
-        $("form#editLantai").each(function() {
-            $(this).validate({
-                rules: {
-                    ruang: {
-                        required: true,
-                        alphanumspacedash: true
-                    },
-                    lantai: {
-                        required: true,
-                    },
-                    ket: {
-                        alphanumspacedash: true,
-                    }
+        // validasi form edit lantai
+        $("form#formModalEditLantai").validate({
+            rules: {
+                lantai: {
+                    required: true,
+                    myreg: true
+                },
+                ket: {
+                    myreg: true
                 }
-            });
+            }
+        });
+    });
+
+    // Parsing Data To Modal Edit Lantai
+    var mle = $('#modalEditLantai');
+    $(document).on('click', "#btnModalEditLantai", function() {
+        var lantai = $(this).data('kode');
+        $.ajax({
+            url: "/lantai/get/" + lantai,
+            type: "GET",
+            dataType: "JSON",
+        }).done(function(data) {
+            $('#formModalEditLantai input[name="kode"]').val(data.id);
+            $('#formModalEditLantai input[name="lantai"]').val(data.nama_lantai);
+            $('#formModalEditLantai textarea[name="ket"]').val(data.keterangan);
         });
     });
 </script>

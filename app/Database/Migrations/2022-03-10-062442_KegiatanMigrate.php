@@ -24,7 +24,12 @@ class KegiatanMigrate extends Migration
                 'constraint' => '255',
             ],
             'tanggal'     => [
-                'type'       => 'DATETIME',
+                'type'       => 'DATE',
+            ],
+            'time'     => [
+                'type'       => 'VARCHAR',
+                'constraint' => '50',
+                'null'       => true
             ],
             'pj' => [
                 'type'       => 'VARCHAR',
@@ -34,8 +39,9 @@ class KegiatanMigrate extends Migration
                 'type'       => 'TEXT',
             ],
             'status' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'type'       => 'INT',
+                'comment'    => '0 = batal, 1 = selesai',
+                'null'       => true,
             ],
             'created_at'  => [
                 'type'       => 'DATETIME',

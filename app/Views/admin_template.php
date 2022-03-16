@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/fontawesome/css/all.min.css">
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/fullcalendar/fullcalendar.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/jqvmap/dist/jqvmap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/summernote/summernote-bs4.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
@@ -41,7 +42,6 @@
                 <form class="form-inline mr-auto">
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
@@ -248,6 +248,7 @@
     <script src="<?= base_url() ?>/assets/js/stisla.js"></script>
 
     <!-- JS Libraies -->
+    <script src="<?= base_url() ?>/assets/modules/fullcalendar/fullcalendar.min.js"></script>
     <script src="<?= base_url() ?>/assets/modules/jquery.sparkline.min.js"></script>
     <script src="<?= base_url() ?>/assets/modules/chart.min.js"></script>
     <script src="<?= base_url() ?>/assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>

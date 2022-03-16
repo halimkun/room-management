@@ -62,4 +62,10 @@ class Lantai extends BaseController
         }
     }
 
+    function get($id)
+    {
+        $data = $this->lm->find($id);
+        echo json_encode($data);
+    }
+
 }
