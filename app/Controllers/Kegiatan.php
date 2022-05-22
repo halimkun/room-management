@@ -111,4 +111,25 @@ class Kegiatan extends BaseController
         }
     }
 
+
+    function updateStatuDash() {
+        if ($this->request->getVar('resetStatus') == "true") {
+            $status = null;
+        } else {
+            $status = $this->request->getVar('status');
+        }
+        
+        $data = [
+            'id' => $this->request->getVar('kode'),
+            'status' => $status
+        ];
+
+        if ($this->km->save($data)) {
+            session()->setFlashdata('success', 'Data berhasil diubah!');
+            return redirect()->to(base_url('/admin'));
+        } else {
+            session()->setFlashdata('error', 'Data gagal diubah!');
+            return redirect()->to(base_url('/admin'));
+        }
+    }
 }

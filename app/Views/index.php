@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/fontawesome/css/all.min.css">
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/datatables/datatables.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/jqvmap/dist/jqvmap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/summernote/summernote-bs4.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
@@ -29,6 +31,9 @@
 
     <!--  -->
     <script src="<?= base_url() ?>/assets/modules/jquery.min.js"></script>
+    <script src="<?= base_url() ?>/assets/modules/datatables/datatables.min.js"></script>
+    <script src="<?= base_url() ?>/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
 
     <style>
         .error {
@@ -43,58 +48,62 @@
         .min-vh-100 {
             min-height: 100vh !important
         }
+
+        .min-vh-75 {
+            min-height: 75vh !important
+        }
+
+        .card .card-header h4+.card-header-action,
+        .card .card-header h4+.card-header-form,
+        .card .card-header h2+.card-header-action,
+        .card .card-header h2+.card-header-form {
+            margin-left: auto;
+        }
     </style>
 </head>
 
-<body>
-    <div class="container-fluid px-0">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner bg-info" role="listbox">
-                <?php $a = 1; ?>
-                <?php foreach ($today as $t) : ?>
-                    <div class="carousel-item <?= $a == 1 ? "active" : '' ?>">
-                        <div class="d-flex align-items-center justify-content-center min-vh-100">
-                            <h1 class="display-1"><?= $t->agenda ?></h1>
-                        </div>
-                    </div>
-                    <?php $a++ ?>
-                <?php endforeach ?>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+<body class="layout-2">
+
+    <div class="container-fluid">
+        <div class="table-responsive mt-2">
+            <div class="display_table" style="overflow: hidden!important;"></div>
         </div>
     </div>
 
-    <!-- General JS Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
-    <!-- <script src="<?= base_url() ?>/assets/modules/jquery.min.js"></script> -->
-    <script src="<?= base_url() ?>/assets/modules/popper.js"></script>
-    <script src="<?= base_url() ?>/assets/modules/tooltip.js"></script>
-    <script src="<?= base_url() ?>/assets/modules/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<?= base_url() ?>/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-    <script src="<?= base_url() ?>/assets/modules/moment.min.js"></script>
-    <script src="<?= base_url() ?>/assets/js/stisla.js"></script>
+    <script>
+        $(document).ready(function() {
+            var loaded = false;
 
-    <!-- JS Libraies -->
-    <script src="<?= base_url() ?>/assets/modules/jquery.sparkline.min.js"></script>
-    <script src="<?= base_url() ?>/assets/modules/chart.min.js"></script>
-    <script src="<?= base_url() ?>/assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
-    <script src="<?= base_url() ?>/assets/modules/summernote/summernote-bs4.js"></script>
-    <script src="<?= base_url() ?>/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+            function refresh() {
+                $(".display_table").load("<?= base_url() ?>/home/kegiatan");
+                loaded = true;
+            }
+            refresh();
 
-    <!-- Page Specific JS File -->
-    <script src="<?= base_url() ?>/assets/js/page/index.js"></script>
+            setInterval(function() {
+                refresh();
+            }, 300000);
 
-    <!-- Template JS File -->
-    <script src="<?= base_url() ?>/assets/js/scripts.js"></script>
-    <script src="<?= base_url() ?>/assets/js/custom.js"></script>
+            var elem = document.documentElement;
+            function openFullscreen() {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    /* Safari */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    /* IE11 */
+                    elem.msRequestFullscreen();
+                }
+            }
+
+            // setInterval(function() {
+            //     var info = table.page.info();
+            //     var pageNum = (info.page < info.pages) ? info.page + 1 : 1;
+            //     table.page(pageNum).draw(false);
+            // }, 5000);
+        });
+    </script>
 </body>
 
 </html>

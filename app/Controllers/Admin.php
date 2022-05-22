@@ -46,7 +46,7 @@ class Admin extends BaseController
             "ruang" => $this->rm->findAll(),
             "pj" => $this->pjm->findAll(),
             "lantai" => $this->lm->findAll(),
-            "kegiatan" => $this->km->findAll()
+            "kegiatan" => $this->km->orderBy('tanggal', "DESC")->findAll()
         ]);
     }
 

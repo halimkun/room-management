@@ -34,7 +34,7 @@
                 <?php endif; ?>
 
                 <!-- Table data -->
-                <table class="table">
+                <table class="table" id="table_jabatan">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -121,6 +121,7 @@
 
 <script>
     $(document).ready(function() {
+        $("#table_jabatan").dataTable();
         jQuery.validator.setDefaults({
             errorClass: "is-invalid error",
             validClass: "is-valid",

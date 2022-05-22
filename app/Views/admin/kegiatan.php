@@ -42,7 +42,7 @@
                     <?php endif; ?>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="table-1">
+                        <table class="table table-hover" id="tabelKegiatan">
                             <thead>
                                 <tr class="text-center">
                                     <th class="text-center">
@@ -78,6 +78,8 @@
                                                     echo '<small class="bg-danger text-white p-1 rounded" data-toggle="tooltip" title="batal"><i class="mx-1 far fa-times-circle"></i></small>';
                                                 } elseif ($k->status == 1) {
                                                     echo '<small class="bg-success text-white p-1 rounded" data-toggle="tooltip" title="selesai"><i class="mx-1 fas fa-check-circle"></i></small>';
+                                                } elseif ($k->status == 2) {
+                                                    echo '<small class="bg-primary text-white p-1 rounded" data-toggle="tooltip" title="selesai"><i class="mx-1 fas fa-sync-alt"></i></small>';
                                                 } else {
                                                     echo '<small class="bg-dark text-white p-1 rounded" data-toggle="tooltip" title="unknown"><i class="mx-1 far fa-ban"></i></small>';
                                                 }
@@ -290,8 +292,9 @@
                         <div class="form-group">
                             <select name="status" required id="status_<?= str_replace(" ", "_", $k->agenda) . $k->id ?>" class="custom-select">
                                 <option value="">Pilih Status</option>
-                                <option value="0">Batal</option>
                                 <option value="1">Selesai</option>
+                                <option value="2">Berlangsung</option>
+                                <option value="0">Batal</option>
                             </select>
                             <div class="invalid-feedback">Status Harus diisi</div>
                         </div>
@@ -322,6 +325,8 @@
 
 <script>
     $(document).ready(function() {
+        $("#tabelKegiatan").dataTable();
+
         jQuery.validator.setDefaults({
             errorClass: "is-invalid error",
             validClass: "is-valid",

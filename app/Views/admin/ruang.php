@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body">
                     <!-- table ruang -->
-                    <table class="table">
+                    <table class="table" id="tableRuang">
                         <thead>
                             <tr>
                                 <th>No.</th>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body">
                     <!-- table lantai -->
-                    <table class="table">
+                    <table class="table" id="tableLantai">
                         <thead>
                             <tr>
                                 <th>No.</th>
@@ -228,6 +228,9 @@
 
 <script>
     $(document).ready(function() {
+
+        $("#tableRuang").dataTable();
+        $("#tableLantai").dataTable();
 
         jQuery.validator.setDefaults({
             errorClass: "is-invalid error",

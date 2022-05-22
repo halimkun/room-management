@@ -152,6 +152,8 @@
 
     <script>
         $(document).ready(function() {
+            $("#table_data_pj").dataTable();
+            
             jQuery.validator.setDefaults({
                 errorClass: "is-invalid error",
                 validClass: "is-valid",

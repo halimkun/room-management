@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use CodeIgniter\I18n\Time;
+use ErrorException;
+use Exception;
 
 class Home extends BaseController
 {
@@ -27,6 +29,24 @@ class Home extends BaseController
     {
         return view('index',[
             "title" => "Aktifitas",
+            "today" => $this->km->getKegiatanToday($this->time->format('Y-m-d')),
+        ]);
+    }
+
+    public function test()
+    {
+        // return view('test',[
+        //     "title" => "Aktifitas",
+        //     "kegiatan" => $this->km->getKegiatanToday($this->time->format('Y-m-d')),
+        // ]);
+
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+    }
+
+    public function kegiatan()
+    {
+        return view('kegiatan',[
+            "title" => " ",
             "today" => $this->km->getKegiatanToday($this->time->format('Y-m-d')),
         ]);
     }

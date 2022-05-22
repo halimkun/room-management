@@ -26,6 +26,7 @@ class KegiatanModel extends Model
         $builder = $this->db->table($this->table);
         $builder->select('*');
         $builder->where("DATE(tanggal)", $tanggal);
+        $builder->orderBy('time', 'ASC');
 
         return $builder->get()->getResultObject();
     }
