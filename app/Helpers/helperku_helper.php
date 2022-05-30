@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\KegiatanModel;
+
     function statusKegiatan($tgl)
     {
         $time = new CodeIgniter\I18n\Time();
@@ -126,4 +129,11 @@
         }
 
         return $bg;
+    }
+
+    function cekKesediaanRuang($ruang)
+    {
+        $kegiatan = new KegiatanModel();
+        $data = $kegiatan->where(["tanggal" => date("Y-m-d"), "ruang" => "$ruang"])->findAll();
+        return $data;
     }

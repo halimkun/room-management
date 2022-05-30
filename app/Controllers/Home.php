@@ -47,6 +47,13 @@ class Home extends BaseController
     {
         return view('kegiatan',[
             "title" => " ",
+            "pj" => $this->pjm->findAll(),
+            "ruang" => $this->rm->findAll(),
+            "lantai" => $this->lm->findAll(),
+            "kegiatan" => $this->km->findAll(),
+            "today" => $this->km->getKegiatanToday($this->time->format('Y-m-d')),
+            "next7days" => $this->km->getNext7Days($this->time->toDateString(), $this->time->addDays(6)->toDateString()),
+            "prev7days" => $this->km->getPrev7Days($this->time->toDateString(), $this->time->addDays(-6)->toDateString()),
             "today" => $this->km->getKegiatanToday($this->time->format('Y-m-d')),
         ]);
     }

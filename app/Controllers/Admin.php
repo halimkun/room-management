@@ -12,6 +12,7 @@ class Admin extends BaseController
     protected $jm;
     protected $km;
     protected $lm;
+    protected $user;
     protected $time;
 
 
@@ -22,6 +23,7 @@ class Admin extends BaseController
         $this->km = new \App\Models\KegiatanModel();
         $this->lm = new \App\Models\LantaiModel();
         $this->jm = new \App\Models\JabatanModel();
+        $this->user = new \App\Models\UserModel();
         $this->time = new Time();
     }
 
@@ -73,6 +75,14 @@ class Admin extends BaseController
             "title" => "Data Ruang",
             "lantai" => $this->lm->findAll(),
             "ruang" => $this->rm->findAll()
+        ]);
+    }
+
+    public function petugas()
+    {
+        return view('admin/petugas', [
+            "title" => "Data Petugas",
+            "users" => $this->user->findAll(),
         ]);
     }
 }
