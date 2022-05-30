@@ -33,6 +33,10 @@
 
     <!--  -->
     <script src="<?= base_url() ?>/assets/modules/jquery.min.js"></script>
+    <!-- General JS Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+    
     <script src="<?= base_url() ?>/assets/modules/datatables/datatables.min.js"></script>
     <script src="<?= base_url() ?>/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="<?= base_url() ?>/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
@@ -101,6 +105,10 @@
                             </ul>
                         </li>
                         <li><a class="nav-link" href="/ruang"><i class="fas fa-hospital"></i> <span>Ruang & Lantai</span></a></li>
+                        <li class="menu-header">User</li>
+                        <li><a class="nav-link" href="/petugas"><i class="fas fa-user"></i> <span>User</span></a></li>
+                        <li class="menu-header">Help</li>
+                        <li><a class="nav-link" href="/admin/panduan"><i class="fas fa-info"></i> <span>Panduan</span></a></li>
                     </ul>
                 </aside>
             </div>
@@ -122,9 +130,6 @@
         </div>
     </div>
 
-    <!-- General JS Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
     <!-- <script src="<?= base_url() ?>/assets/modules/jquery.min.js"></script> -->
     <script src="<?= base_url() ?>/assets/modules/popper.js"></script>
     <script src="<?= base_url() ?>/assets/modules/tooltip.js"></script>
