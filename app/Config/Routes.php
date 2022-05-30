@@ -39,6 +39,7 @@ $routes->group('admin', ['filter' => 'role:admin'], function ($r) {
     $r->get('/penanggung_jawab', 'Admin::penanggung_jawab');
     $r->get('/jabatan', 'Admin::jabatan');
     $r->get('/ruang', 'Admin::ruang');
+    $r->get('/petugas', 'Admin::petugas');
 });
 /*
  * --------------------------------------------------------------------

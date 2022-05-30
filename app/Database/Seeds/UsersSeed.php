@@ -22,7 +22,9 @@ class UsersSeed extends Seeder
             'id'       => '',
             'email'    => 'int.halim@gmail.com',
             'username' => 'admin',
-            'password' => 'admin12345',
+            'password' => 'admin123',
+            'nama'     => 'Nur Intan Kusuma',
+            'bagian'   => 'Sekretariat',
             'active'   => 1,
         ]));
     }
