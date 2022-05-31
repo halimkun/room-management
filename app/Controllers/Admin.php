@@ -85,4 +85,10 @@ class Admin extends BaseController
             "users" => $this->user->findAll(),
         ]);
     }
+
+    public function panduan(){
+        return view('admin/panduan', [
+            "title" => "Panduan Penggunaan"
+        ]);
+    }
 }
