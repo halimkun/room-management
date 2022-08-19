@@ -1,2 +1,2 @@
 # Sistem Manajemen Ruangan.
-dibuat menggunakan codeigniter 4
+dibuat menggunakan codeigniter 4 dan bootstrap (stisla)
